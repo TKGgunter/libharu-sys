@@ -953,7 +953,7 @@ pub enum HPDF_AnnotIntent {
 }
 
 #[repr(C)]
-enum HPDF_LineAnnotEndingStyle {
+pub enum HPDF_LineAnnotEndingStyle {
     HPDF_LINE_ANNOT_NONE = 0,
     HPDF_LINE_ANNOT_SQUARE,
     HPDF_LINE_ANNOT_CIRCLE,
@@ -967,13 +967,13 @@ enum HPDF_LineAnnotEndingStyle {
 }
 
 #[repr(C)]
-enum HPDF_LineAnnotCapPosition{
+pub enum HPDF_LineAnnotCapPosition{
     HPDF_LINE_ANNOT_CAP_INLINE = 0,
     HPDF_LINE_ANNOT_CAP_TOP
 }
 
 #[repr(C)]
-enum HPDF_StampAnnotName{
+pub enum HPDF_StampAnnotName{
     HPDF_STAMP_ANNOT_APPROVED = 0,
     HPDF_STAMP_ANNOT_EXPERIMENTAL,
     HPDF_STAMP_ANNOT_NOTAPPROVED,
@@ -994,7 +994,7 @@ enum HPDF_StampAnnotName{
 /*------ border stype --------------------------------------------------------*/
 
 #[repr(C)]
-enum HPDF_BSSubtype {
+pub enum HPDF_BSSubtype {
     HPDF_BS_SOLID,
     HPDF_BS_DASHED,
     HPDF_BS_BEVELED,
@@ -1006,7 +1006,7 @@ enum HPDF_BSSubtype {
 /*----- blend modes ----------------------------------------------------------*/
 
 #[repr(C)]
-enum HPDF_BlendMode {
+pub enum HPDF_BlendMode {
     HPDF_BM_NORMAL,
     HPDF_BM_MULTIPLY,
     HPDF_BM_SCREEN,
@@ -1025,7 +1025,7 @@ enum HPDF_BlendMode {
 /*----- slide show -----------------------------------------------------------*/
 
 #[repr(C)]
-enum HPDF_TransitionStyle {
+pub enum HPDF_TransitionStyle {
     HPDF_TS_WIPE_RIGHT = 0,
     HPDF_TS_WIPE_UP,
     HPDF_TS_WIPE_LEFT,
@@ -1321,12 +1321,11 @@ extern{
 //                    HPDF_REAL    flatness);
 //
 ///* gs */
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Page_SetExtGState  (HPDF_Page        page,
-//                         HPDF_ExtGState   ext_gstate);
-//
-//
+
+    pub fn HPDF_Page_SetExtGState  (page       : HPDF_Page ,
+                                    ext_gstate : HPDF_ExtGState )->HPDF_STATUS;
+
+
 ///*--- Special graphic state operator --------------------------------------*/
 //
 ///* q */
@@ -1433,6 +1432,30 @@ extern{
     pub fn HPDF_SetCompressionMode( pdf : HPDF_Doc,
                                     mode: HPDF_UINT )->HPDF_STATUS;
 
+
+/*--------------------------------------------------------------------------*/
+/*----- attachements -------------------------------------------------------*/
+
+    pub fn HPDF_AttachFile  (pdf:  HPDF_Doc ,
+                              file: *const libc::c_char ) -> HPDF_EmbeddedFile;
+
+/*--------------------------------------------------------------------------*/
+/*----- extended graphics state --------------------------------------------*/
+
+    pub fn HPDF_CreateExtGState  (pdf: HPDF_Doc )->HPDF_ExtGState;
+
+
+    pub fn HPDF_ExtGState_SetAlphaStroke  ( ext_gstate  :  HPDF_ExtGState,
+                                             value      :  HPDF_REAL         )->HPDF_STATUS;
+
+
+    pub fn HPDF_ExtGState_SetAlphaFill  (ext_gstate : HPDF_ExtGState,
+                                         value      :  HPDF_REAL ) ->HPDF_STATUS;
+
+
+
+    pub fn HPDF_ExtGState_SetBlendMode  (ext_gstate : HPDF_ExtGState,
+                                         mode       : HPDF_BlendMode)->HPDF_STATUS;
 
 
 /*--------------------------------------------------------------------------*/
@@ -2023,15 +2046,13 @@ extern{
                                    color_space: HPDF_ColorSpace,
                                    bits_per_component: HPDF_UINT)->HPDF_Image;
 
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Image_AddSMask  (HPDF_Image    image,
-//                      HPDF_Image    smask);
+    pub fn HPDF_Image_AddSMask  (   image : HPDF_Image, 
+                                     smask : HPDF_Image  )->HPDF_STATUS;
 
      pub fn HPDF_Image_GetSize (image: HPDF_Image)->HPDF_Point;
 
 
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Image_GetSize2 (HPDF_Image  image, HPDF_Point *size);
+    pub fn HPDF_Image_GetSize2 (image: HPDF_Image, size: *mut HPDF_Point)->HPDF_STATUS;
 
 
     pub fn HPDF_Image_GetWidth  (image: HPDF_Image  )->HPDF_UINT;

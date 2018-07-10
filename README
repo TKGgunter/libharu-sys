@@ -27,17 +27,11 @@ to the following restrictions:
 
 
 
-Demos ToDo:
-
-raw_image_demo
-image_demo
-ext_gstate_demo
-line_demo
-grid_sheet
-ttf_demo
-ttf_demojp
-link_annotated
-outline
+ToDo:
++Complete demo to rust rewrite
++fill in the blanks https://github.com/libharu/libharu/wiki/API%3A-Document
++contact libharu guys
++apply to push a crate
 
 ====
 fill in the blanks
