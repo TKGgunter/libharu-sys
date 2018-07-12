@@ -693,15 +693,15 @@ pub const  HPDF_COMP_MASK     : u32 =       0xFF;
 /*------ text width struct --------------------------------------------------*/
 
 #[repr(C)]
-struct HPDF_TextWidth {
-    numchars: HPDF_UINT,
+pub struct HPDF_TextWidth {
+    pub numchars: HPDF_UINT,
 
     /* don't use this value (it may be change in the feature).
        use numspace as alternated. */
     numwords: HPDF_UINT,
 
-    width:    HPDF_UINT,
-    numspace: HPDF_UINT,
+    pub width:    HPDF_UINT,
+    pub numspace: HPDF_UINT,
 } 
 
 
@@ -1432,6 +1432,49 @@ extern{
     pub fn HPDF_SetCompressionMode( pdf : HPDF_Doc,
                                     mode: HPDF_UINT )->HPDF_STATUS;
 
+/*--------------------------------------------------------------------------*/
+/*----- font ---------------------------------------------------------------*/
+
+    pub fn HPDF_Font_GetFontName  (font : HPDF_Font )->*const libc::c_char;
+
+
+    pub fn HPDF_Font_GetEncodingName  (font : HPDF_Font )->*const libc::c_char;
+
+
+    pub fn HPDF_Font_GetUnicodeWidth  (font : HPDF_Font,
+                                       code : HPDF_UNICODE)->HPDF_INT;
+
+    pub fn HPDF_Font_GetBBox  (font : HPDF_Font)->HPDF_Box;
+
+
+    pub fn HPDF_Font_GetAscent  (font : HPDF_Font)->HPDF_INT;
+
+
+    pub fn HPDF_Font_GetDescent  (font : HPDF_Font )->HPDF_INT;
+
+
+    pub fn HPDF_Font_GetXHeight  (font : HPDF_Font)->HPDF_UINT;
+
+
+    pub fn HPDF_Font_GetCapHeight  (font : HPDF_Font)->HPDF_UINT;
+
+
+    pub fn  HPDF_Font_TextWidth  (font : HPDF_Font,
+                                  text : *const libc::c_char,
+                                  len  : HPDF_UINT           )->HPDF_TextWidth;
+
+
+//HPDF_EXPORT(HPDF_UINT)
+//HPDF_Font_MeasureText (HPDF_Font          font,
+//                       const HPDF_BYTE   *text,
+//                       HPDF_UINT          len,
+//                       HPDF_REAL          width,
+//                       HPDF_REAL          font_size,
+//                       HPDF_REAL          char_space,
+//                       HPDF_REAL          word_space,
+//                       HPDF_BOOL          wordwrap,
+//                       HPDF_REAL         *real_width);
+//
 
 /*--------------------------------------------------------------------------*/
 /*----- attachements -------------------------------------------------------*/
@@ -1538,7 +1581,7 @@ extern{
 
 
 /* This function is obsolete. Use HPDF_Page_GetTextRise.  */
-////HPDF_EXPORT(HPDF_REAL)
+////HPDF_EXPORT(XXXX)
 ////HPDF_Page_GetTextRaise  (XXXX   XXXX);
 
 
@@ -1592,11 +1635,10 @@ extern{
 //HPDF_GetPageMode  (HPDF_Doc   pdf);
 //
 //
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_SetPageMode  (HPDF_Doc        pdf,
-//                   HPDF_PageMode   mode);
-//
-//
+    pub fn HPDF_SetPageMode  (pdf  : HPDF_Doc,
+                              mode : HPDF_PageMode )->HPDF_STATUS;
+
+
 //HPDF_EXPORT(HPDF_UINT)
 //HPDF_GetViewerPreference  (HPDF_Doc   pdf);
 //
@@ -1685,40 +1727,33 @@ extern{
 //                    const char         *prefix);
 //
 //
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_UseJPFonts   (HPDF_Doc   pdf);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_UseKRFonts   (HPDF_Doc   pdf);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_UseCNSFonts   (HPDF_Doc   pdf);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_UseCNTFonts   (HPDF_Doc   pdf);
+    pub fn HPDF_UseJPFonts   (pdf : HPDF_Doc)->HPDF_STATUS;
+
+
+    pub fn HPDF_UseKRFonts   (pdf : HPDF_Doc)->HPDF_STATUS;
+
+
+    pub fn HPDF_UseCNSFonts   (pdf : HPDF_Doc )->HPDF_STATUS;
+
+
+    pub fn HPDF_UseCNTFonts   (pdf : HPDF_Doc  )->HPDF_STATUS;
 
 /*--------------------------------------------------------------------------*/
 /*----- outline ------------------------------------------------------------*/
 
 
-//HPDF_EXPORT(HPDF_Outline)
-//HPDF_CreateOutline  (HPDF_Doc       pdf,
-//                     HPDF_Outline   parent,
-//                     const char    *title,
-//                     HPDF_Encoder   encoder);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Outline_SetOpened  (HPDF_Outline  outline,
-//                         HPDF_BOOL     opened);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Outline_SetDestination (HPDF_Outline      outline,
-//                             HPDF_Destination  dst);
+    pub fn  HPDF_CreateOutline  (pdf     : HPDF_Doc    ,
+                                 parent  : HPDF_Outline,
+                                 title   : *const libc::c_char,
+                                 encoder : HPDF_Encoder    )->HPDF_Outline;
+
+
+    pub fn  HPDF_Outline_SetOpened  (outline : HPDF_Outline,
+                                     opened  : HPDF_BOOL)->HPDF_STATUS;
+
+
+    pub fn  HPDF_Outline_SetDestination (outline : HPDF_Outline,
+                                         dst : HPDF_Destination )->HPDF_STATUS;
 
 
 /*--------------------------------------------------------------------------*/
@@ -1767,6 +1802,56 @@ extern{
 //HPDF_EXPORT(HPDF_STATUS)
 //HPDF_Destination_SetFitBV  (HPDF_Destination  dst,
 //                            HPDF_REAL         left);
+
+/*--------------------------------------------------------------------------*/
+/*----- encoder ------------------------------------------------------------*/
+
+    pub fn HPDF_GetEncoder  (pdf           : HPDF_Doc,
+                             encoding_name : *const libc::c_char)->HPDF_Encoder;
+
+
+    pub fn HPDF_GetCurrentEncoder  (pdf : HPDF_Doc)->HPDF_Encoder;
+
+
+    pub fn HPDF_SetCurrentEncoder  (pdf           : HPDF_Doc,
+                                    encoding_name : *const libc::c_char)->HPDF_STATUS;
+
+
+    pub fn HPDF_Encoder_GetType  (encoder : HPDF_Encoder  )->HPDF_EncoderType;
+
+
+//HPDF_EXPORT(HPDF_ByteType)
+//HPDF_Encoder_GetByteType  (HPDF_Encoder    encoder,
+//                           const char     *text,
+//                           HPDF_UINT       index);
+//
+//
+    pub fn HPDF_Encoder_GetUnicode  (encoder : HPDF_Encoder ,
+                                     code : HPDF_UINT16 )->HPDF_UNICODE;
+
+
+    pub fn HPDF_Encoder_GetWritingMode (encoder : HPDF_Encoder )->HPDF_WritingMode;
+
+
+    pub fn HPDF_UseJPEncodings   (pdf : HPDF_Doc  )->HPDF_STATUS;
+
+
+
+    pub fn HPDF_UseKREncodings   (pdf : HPDF_Doc )->HPDF_STATUS;
+
+
+
+    pub fn HPDF_UseCNSEncodings   (pdf : HPDF_Doc )->HPDF_STATUS;
+
+
+
+    pub fn HPDF_UseCNTEncodings   (pdf : HPDF_Doc )->HPDF_STATUS;
+
+
+    pub fn HPDF_UseUTFEncodings   (pdf : HPDF_Doc)->HPDF_STATUS;
+
+
+    
 /*--------------------------------------------------------------------------*/
 /*----- annotation ---------------------------------------------------------*/
 
