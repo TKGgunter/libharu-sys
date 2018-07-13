@@ -212,11 +212,11 @@ pub const  HPDF_COMP_MASK     : u32 =       0xFF;
 ///*----------------------------------------------------------------------------*/
 ///*----- permission flags (only Revision 2 is supported)-----------------------*/
 //
-//#define HPDF_ENABLE_READ         0
-//#define HPDF_ENABLE_PRINT        4
-//#define HPDF_ENABLE_EDIT_ALL     8
-//#define HPDF_ENABLE_COPY         16
-//#define HPDF_ENABLE_EDIT         32
+pub const HPDF_ENABLE_READ      : u32 =  0;
+pub const HPDF_ENABLE_PRINT     : u32 =  4;
+pub const HPDF_ENABLE_EDIT_ALL  : u32 =  8;
+pub const HPDF_ENABLE_COPY      : u32 =  16;
+pub const HPDF_ENABLE_EDIT      : u32 =  32;
 //
 //
 ///*----------------------------------------------------------------------------*/
@@ -1426,6 +1426,23 @@ extern{
 
 /* W* */
     pub fn HPDF_Page_Eoclip  (page: HPDF_Page)->HPDF_STATUS;
+/*--------------------------------------------------------------------------*/
+/*----- encryption ---------------------------------------------------------*/
+
+    pub fn  HPDF_SetPassword  (pdf          :   HPDF_Doc,
+                               owner_passwd : *const libc::c_char,
+                               user_passwd  : *const libc::c_char)->HPDF_STATUS;
+
+
+    pub fn  HPDF_SetPermission  (pdf    :   HPDF_Doc,
+                                 permission : HPDF_UINT)->HPDF_STATUS;
+
+
+    pub fn  HPDF_SetEncryptionMode  ( pdf       :   HPDF_Doc,       
+                                      mode      :   HPDF_EncryptMode, 
+                                      key_len   :   HPDF_UINT         )->HPDF_STATUS;
+
+
 /*--------------------------------------------------------------------------*/
 /*----- compression --------------------------------------------------------*/
 
