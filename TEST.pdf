@@ -4,15 +4,13 @@
 <<
 /Type /Catalog
 /Pages 2 0 R
-/PageMode /UseOutlines
-/Outlines 14 0 R
 >>
 endobj
 2 0 obj
 <<
 /Type /Pages
-/Kids [ 5 0 R 8 0 R 11 0 R ]
-/Count 3
+/Kids [ 5 0 R ]
+/Count 1
 >>
 endobj
 3 0 obj
@@ -23,15 +21,15 @@ endobj
 4 0 obj
 <<
 /Type /Font
-/BaseFont /Helvetica
+/BaseFont /Times-Roman
 /Subtype /Type1
-/Encoding /StandardEncoding
+/Encoding /WinAnsiEncoding
 >>
 endobj
 5 0 obj
 <<
 /Type /Page
-/MediaBox [ 0 0 800 800 ]
+/MediaBox [ 0 0 400 500 ]
 /Contents 6 0 R
 /Resources <<
 /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
@@ -40,6 +38,7 @@ endobj
 >>
 >>
 /Parent 2 0 R
+/Annots [ 8 0 R 9 0 R 10 0 R 11 0 R 12 0 R 13 0 R 14 0 R 15 0 R ]
 >>
 endobj
 6 0 obj
@@ -47,162 +46,154 @@ endobj
 /Length 7 0 R
 >>
 stream
-/F1 30 Tf
 BT
-30 740 Td
-(Page:1) Tj
+/F1 16 Tf
+130 450 Td
+(Annotation Demo) Tj
+ET
+/F1 11 Tf
+BT
+85 380 Td
+(Comment Icon.) Tj
+ET
+BT
+245 380 Td
+(Key Icon) Tj
+ET
+BT
+85 280 Td
+(Note Icon.) Tj
+ET
+BT
+245 280 Td
+(Help Icon) Tj
+ET
+BT
+85 180 Td
+(NewParagraph Icon) Tj
+ET
+BT
+245 180 Td
+(Paragraph Icon) Tj
+ET
+BT
+85 80 Td
+(Insert Icon) Tj
+ET
+BT
+245 80 Td
+(Text Icon\050ISO8859-2 text\051) Tj
 ET
 
 endstream
 endobj
 7 0 obj
-38
+349
 endobj
 8 0 obj
 <<
-/Type /Page
-/MediaBox [ 0 0 800 800 ]
-/Contents 9 0 R
-/Resources <<
-/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
-/Font <<
-/F1 4 0 R
->>
->>
-/Parent 2 0 R
+/Rect [ 50 150 350 400 ]
+/Type /Annot
+/Subtype /Text
+/Contents (Annotation with Comment Icon. \012 This annotation set to be opened initially.)
+/P 5 0 R
+/Name /Comment
+/Open true
 >>
 endobj
 9 0 obj
 <<
-/Length 10 0 R
+/Rect [ 210 350 350 400 ]
+/Type /Annot
+/Subtype /Text
+/Contents (Annotation with Key Icon)
+/P 5 0 R
+/Name /Paragraph
 >>
-stream
-/F1 30 Tf
-BT
-30 740 Td
-(Page:2) Tj
-ET
-
-endstream
 endobj
 10 0 obj
-38
+<<
+/Rect [ 50 150 250 300 ]
+/Type /Annot
+/Subtype /Text
+/Contents (Annotation with Note Icon)
+/P 5 0 R
+/Name /Note
+>>
 endobj
 11 0 obj
 <<
-/Type /Page
-/MediaBox [ 0 0 800 800 ]
-/Contents 12 0 R
-/Resources <<
-/ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
-/Font <<
-/F1 4 0 R
->>
->>
-/Parent 2 0 R
+/Rect [ 210 300 250 350 ]
+/Type /Annot
+/Subtype /Text
+/Contents (Annotation with Help Icon)
+/P 5 0 R
+/Name /Help
 >>
 endobj
 12 0 obj
 <<
-/Length 13 0 R
+/Rect [ 50 150 150 200 ]
+/Type /Annot
+/Subtype /Text
+/Contents (Annotation with NewParagraph Icon)
+/P 5 0 R
+/Name /NewParagraph
 >>
-stream
-/F1 30 Tf
-BT
-30 740 Td
-(Page:3) Tj
-ET
-
-endstream
 endobj
 13 0 obj
-38
+<<
+/Rect [ 210 200 150 350 ]
+/Type /Annot
+/Subtype /Text
+/Contents (Annotation with Paragraph Icon)
+/P 5 0 R
+/Name /Paragraph
+>>
 endobj
 14 0 obj
 <<
-/Type /Outlines
-/First 15 0 R
-/Last 15 0 R
-/Count 4
+/Rect [ 50 100 50 150 ]
+/Type /Annot
+/Subtype /Text
+/Contents (Annotation with Insert Icon)
+/P 5 0 R
+/Name /Insert
 >>
 endobj
 15 0 obj
 <<
-/Title (OutlineRoot)
-/Type /Outlines
-/Parent 14 0 R
-/First 16 0 R
-/Last 18 0 R
-/Count 3
+/Rect [ 210 100 50 350 ]
+/Type /Annot
+/Subtype /Text
+/Contents <FEFF0041006E006E006F0074006100740069006F006E00200077006900740068002000490053004F0038003800350039002000740065007800740020>
+/P 5 0 R
 >>
-endobj
-16 0 obj
-<<
-/Title (page1)
-/Type /Outlines
-/Parent 15 0 R
-/Next 17 0 R
-/Dest 19 0 R
->>
-endobj
-17 0 obj
-<<
-/Title (page2)
-/Type /Outlines
-/Prev 16 0 R
-/Parent 15 0 R
-/Next 18 0 R
-/Dest 20 0 R
->>
-endobj
-18 0 obj
-<<
-/Title <FEFF00700061006700650033>
-/Type /Outlines
-/Prev 17 0 R
-/Parent 15 0 R
-/Dest 21 0 R
->>
-endobj
-19 0 obj
-[ 5 0 R /XYZ 0 800 1 ]
-endobj
-20 0 obj
-[ 8 0 R /XYZ 0 800 1 ]
-endobj
-21 0 obj
-[ 11 0 R /XYZ 0 800 1 ]
 endobj
 xref
-0 22
+0 16
 0000000000 65535 f
 0000000015 00000 n
-0000000104 00000 n
-0000000176 00000 n
-0000000240 00000 n
-0000000338 00000 n
-0000000514 00000 n
-0000000606 00000 n
-0000000624 00000 n
-0000000800 00000 n
-0000000893 00000 n
-0000000912 00000 n
-0000001090 00000 n
-0000001184 00000 n
-0000001203 00000 n
-0000001277 00000 n
-0000001387 00000 n
-0000001481 00000 n
-0000001588 00000 n
-0000001701 00000 n
-0000001740 00000 n
-0000001779 00000 n
+0000000064 00000 n
+0000000123 00000 n
+0000000187 00000 n
+0000000286 00000 n
+0000000528 00000 n
+0000000931 00000 n
+0000000950 00000 n
+0000001150 00000 n
+0000001288 00000 n
+0000001422 00000 n
+0000001557 00000 n
+0000001707 00000 n
+0000001852 00000 n
+0000001989 00000 n
 trailer
 <<
 /Root 1 0 R
 /Info 3 0 R
-/Size 22
+/Size 16
 >>
 startxref
-1819
+2206
 %%EOF

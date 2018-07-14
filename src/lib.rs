@@ -1728,14 +1728,13 @@ extern{
                                      file_name: *const libc::c_char,
                                      embedding: HPDF_BOOL)-> *const libc::c_char;
 
-//
-//HPDF_EXPORT(const char*)
-//HPDF_LoadTTFontFromFile2 (HPDF_Doc     pdf,
-//                          const char  *file_name,
-//                          HPDF_UINT    index,
-//                          HPDF_BOOL    embedding);
-//
-//
+
+    pub fn  HPDF_LoadTTFontFromFile2 (pdf        : HPDF_Doc, 
+                                      file_name  : *const libc::c_char,
+                                      index      : HPDF_UINT,    
+                                      embedding  : HPDF_BOOL    )->*const libc::c_char;
+
+
 //HPDF_EXPORT(HPDF_STATUS)
 //HPDF_AddPageLabel  (HPDF_Doc            pdf,
 //                    HPDF_UINT           page_num,
@@ -1880,12 +1879,11 @@ extern{
 //                            HPDF_U3D        u3d,
 //                            HPDF_Image      ap);
 //
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateTextAnnot  (HPDF_Page       page,
-//                            HPDF_Rect       rect,
-//                            const char     *text,
-//                            HPDF_Encoder    encoder);
-//
+    pub fn  HPDF_Page_CreateTextAnnot  (page      :   HPDF_Page,       
+                                        rect      :   HPDF_Rect,       
+                                        text      :  *const libc::c_char,
+                                        encoder   :   HPDF_Encoder    )->HPDF_Annotation;
+
 //HPDF_EXPORT(HPDF_Annotation)
 //HPDF_Page_CreateFreeTextAnnot  (HPDF_Page       page,
 //								HPDF_Rect       rect,
@@ -1990,15 +1988,13 @@ extern{
                                             dash_off: HPDF_UINT16      )->HPDF_STATUS;
 
 
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_TextAnnot_SetIcon  (HPDF_Annotation   annot,
-//                         HPDF_AnnotIcon    icon);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_TextAnnot_SetOpened  (HPDF_Annotation   annot,
-//                          HPDF_BOOL          opened);
-//
+    pub fn  HPDF_TextAnnot_SetIcon  (annot    :   HPDF_Annotation, 
+                                     icon     :   HPDF_AnnotIcon )->HPDF_STATUS;
+
+
+    pub fn  HPDF_TextAnnot_SetOpened  (annot     :   HPDF_Annotation, 
+                                       opened    :   HPDF_BOOL         )->HPDF_STATUS;
+
 //HPDF_EXPORT(HPDF_STATUS)
 //HPDF_Annot_SetRGBColor (HPDF_Annotation annot, HPDF_RGBColor color);
 //
