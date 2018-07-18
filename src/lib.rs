@@ -2159,10 +2159,9 @@ extern{
     pub fn HPDF_Image_GetHeight  (image: HPDF_Image )->HPDF_UINT;
 
 
-//HPDF_EXPORT(HPDF_UINT)
-//HPDF_Image_GetBitsPerComponent (HPDF_Image  image);
-//
-//
+    pub fn HPDF_Image_GetBitsPerComponent (image : HPDF_Image)->HPDF_UINT;
+
+
 //HPDF_EXPORT(const char*)
 //HPDF_Image_GetColorSpace (HPDF_Image  image);
 //

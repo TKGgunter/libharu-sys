@@ -13,9 +13,9 @@
  */
 
 //Original C file altered by Thoth Gunter to port for Rust
-extern crate libharu_rs;
+extern crate libharu_sys;
 use std::ptr;
-use libharu_rs::*;
+use libharu_sys::*;
 use std::ffi::CString;
 extern crate libc;
 

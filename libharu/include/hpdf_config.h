@@ -45,6 +45,8 @@
 /* libpng is not available */
 /* #undef LIBHPDF_HAVE_NOPNGLIB */
 /* #undef HPDF_NOPNGLIB */
+#define LIBHPDF_HAVE_NOPNGLIB
+#define HPDF_NOPNGLIB
 
 /* zlib is not available */
 #define LIBHPDF_HAVE_NOZLIB 

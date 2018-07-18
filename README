@@ -3,7 +3,6 @@ libharu bindings for Rust.
 
 
 libharu license
-
 Copyright (C) 1999-2006 Takeshi Kanno
 Copyright (C) 2007-2009 Antony Dovgal
 
@@ -27,13 +26,11 @@ to the following restrictions:
 
 
 
-ToDo:
-+Complete demo to rust rewrite
-+fill in the blanks https://github.com/libharu/libharu/wiki/API%3A-Document
-+contact libharu guys
-+apply to push a crate
+Note on Compilation:
++This binding of the libharu library compiles without cmake 
+or any other build tools outside of the rustc and cargo.
+And as of version 0.0.1 does not construct configuration header file, hpdf_config.h, during builds. The current configuration file excludes pnglib and zlib as dependances.  If you wish embed pngs I would recommend the Image library and pass raw bytes of your png image plane to libharu.  In addition I have not tested the routines that require pnglib or zlib.
 
-====
-+ chfont demo doesn't quite work
-+
-+
+
+
+

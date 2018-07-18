@@ -7,6 +7,7 @@ fn main() {
     let root = std::env::var("CARGO_MANIFEST_DIR").unwrap();
     let root = Path::new(&root).join("libharu");
 
+
     println!("cargo:include={}", root.join("include").into_os_string().into_string().unwrap());
     println!("cargo:src={}", root.join("lib").into_os_string().into_string().unwrap());
 
