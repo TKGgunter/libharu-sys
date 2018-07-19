@@ -5,6 +5,10 @@ authors = ["TKGgunter <thothgunter@live.com>"]
 build = "libharu/build.rs"
 links = "haru"
 
+[dev-dependencies]
+image = "*"
+
+
 [dependencies]
 libc = "*"
 
