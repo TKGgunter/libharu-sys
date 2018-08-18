@@ -75,10 +75,10 @@ pub struct HPDF_Rect {
 /*  HPDF_Point3D struct
 */
 #[repr(C)]
-struct  HPDF_Point3D {
-	x: HPDF_REAL,
-	y: HPDF_REAL,
-	z: HPDF_REAL,
+pub struct  HPDF_Point3D {
+	pub x: HPDF_REAL,
+	pub y: HPDF_REAL,
+	pub z: HPDF_REAL,
 }
 
 type HPDF_Box = HPDF_Rect;
@@ -86,16 +86,16 @@ type HPDF_Box = HPDF_Rect;
 /* HPDF_Date struct
 */ 
 #[repr(C)]
-struct  HPDF_Date {
-   year:        HPDF_INT,
-   month:       HPDF_INT,
-   day:         HPDF_INT,
-   hour:        HPDF_INT,
-   minutes:     HPDF_INT,
-   seconds:     HPDF_INT,
-   ind:         libc::c_char,
-   off_hour:    HPDF_INT,
-   off_minutes: HPDF_INT,
+pub struct  HPDF_Date {
+   pub year:        HPDF_INT,
+   pub month:       HPDF_INT,
+   pub day:         HPDF_INT,
+   pub hour:        HPDF_INT,
+   pub minutes:     HPDF_INT,
+   pub seconds:     HPDF_INT,
+   pub ind:         libc::c_char,
+   pub off_hour:    HPDF_INT,
+   pub off_minutes: HPDF_INT,
 } 
 
 #[repr(C)]
@@ -1995,30 +1995,22 @@ extern{
     pub fn  HPDF_TextAnnot_SetOpened  (annot     :   HPDF_Annotation, 
                                        opened    :   HPDF_BOOL         )->HPDF_STATUS;
 
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Annot_SetRGBColor (HPDF_Annotation annot, HPDF_RGBColor color);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Annot_SetCMYKColor (HPDF_Annotation annot, HPDF_CMYKColor color);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Annot_SetGrayColor (HPDF_Annotation annot, HPDF_REAL color);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Annot_SetNoColor (HPDF_Annotation annot);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetTitle (HPDF_Annotation annot, const char* name);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetSubject (HPDF_Annotation annot, const char* name);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetCreationDate (HPDF_Annotation annot, HPDF_Date value);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetTransparency (HPDF_Annotation annot, HPDF_REAL value);
-//
+    pub fn HPDF_Annot_SetRGBColor (annot: HPDF_Annotation, color : HPDF_RGBColor )->HPDF_STATUS;
+
+    pub fn HPDF_Annot_SetCMYKColor (annot : HPDF_Annotation, color : HPDF_CMYKColor)->HPDF_STATUS;
+
+    pub fn HPDF_Annot_SetGrayColor (annot : HPDF_Annotation, color : HPDF_REAL)->HPDF_STATUS;
+
+    pub fn HPDF_Annot_SetNoColor (annot : HPDF_Annotation)->HPDF_STATUS;
+
+    pub fn HPDF_MarkupAnnot_SetTitle (annot : HPDF_Annotation, name : *const libc::c_char)->HPDF_STATUS;
+
+    pub fn HPDF_MarkupAnnot_SetSubject (annot : HPDF_Annotation, name : *const libc::c_char)->HPDF_STATUS;
+
+    pub fn HPDF_MarkupAnnot_SetCreationDate (annot : HPDF_Annotation, value : HPDF_Date)->HPDF_STATUS;
+
+    pub fn HPDF_MarkupAnnot_SetTransparency (annot : HPDF_Annotation, value : HPDF_REAL)->HPDF_STATUS;
+
 //HPDF_EXPORT(HPDF_STATUS)
 //HPDF_MarkupAnnot_SetIntent (HPDF_Annotation  annot, HPDF_AnnotIntent  intent);
 //
@@ -2112,14 +2104,12 @@ extern{
                                       buffer: *const HPDF_BYTE ,
                                       size:   HPDF_UINT)->HPDF_Image;
 
-//HPDF_EXPORT(HPDF_Image)
-//HPDF_LoadU3DFromFile (HPDF_Doc      pdf,
-//                            const char    *filename);
-//
-//HPDF_EXPORT(HPDF_Image)
-//HPDF_LoadU3DFromMem  (HPDF_Doc      pdf,
-//               const HPDF_BYTE     *buffer,
-//                     HPDF_UINT      size);
+    pub fn HPDF_LoadU3DFromFile ( pdf      :  HPDF_Doc,
+                                  filename :  *const libc::c_char)->HPDF_Image;
+
+    pub fn HPDF_LoadU3DFromMem  (pdf    : HPDF_Doc,
+                                 buffer : *const HPDF_BYTE,
+                                 size   : HPDF_UINT)->HPDF_Image;
 
     pub fn HPDF_Image_LoadRaw1BitImageFromMem ( pdf:          HPDF_Doc,          
                                               buf:          *const HPDF_BYTE, 
@@ -2162,24 +2152,21 @@ extern{
     pub fn HPDF_Image_GetBitsPerComponent (image : HPDF_Image)->HPDF_UINT;
 
 
-//HPDF_EXPORT(const char*)
-//HPDF_Image_GetColorSpace (HPDF_Image  image);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Image_SetColorMask (HPDF_Image   image,
-//                         HPDF_UINT    rmin,
-//                         HPDF_UINT    rmax,
-//                         HPDF_UINT    gmin,
-//                         HPDF_UINT    gmax,
-//                         HPDF_UINT    bmin,
-//                         HPDF_UINT    bmax);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Image_SetMaskImage  (HPDF_Image   image,
-//                          HPDF_Image   mask_image);
-//
+    pub fn HPDF_Image_GetColorSpace (image : HPDF_Image)-> *const libc::c_char;
+
+
+    pub fn HPDF_Image_SetColorMask (image  :   HPDF_Image,
+                                    rmin  :   HPDF_UINT,
+                                    rmax  :   HPDF_UINT,
+                                    gmin  :   HPDF_UINT,
+                                    gmax  :   HPDF_UINT,
+                                    bmin  :   HPDF_UINT,
+                                    bmax  :   HPDF_UINT)->HPDF_STATUS;
+
+
+    pub fn HPDF_Image_SetMaskImage  ( image       : HPDF_Image,
+                                      mask_image  : HPDF_Image)->HPDF_STATUS;
+
 
 
 /*--- Compatibility ------------------------------------------------------*/
@@ -2232,25 +2219,22 @@ extern{
                                  len    : *mut HPDF_UINT  );
 
 
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Page_SetSlideShow  (HPDF_Page              page,
-//                         HPDF_TransitionStyle   type,
-//                         HPDF_REAL              disp_time,
-//                         HPDF_REAL              trans_time);
-//
-//
-//HPDF_EXPORT(HPDF_OutputIntent)
-//HPDF_ICC_LoadIccFromMem (HPDF_Doc   pdf,
-//                        HPDF_MMgr   mmgr,
-//                        HPDF_Stream iccdata,
-//                        HPDF_Xref   xref,
-//                        int         numcomponent);
-//
-//HPDF_EXPORT(HPDF_OutputIntent)
-//HPDF_LoadIccProfileFromFile  (HPDF_Doc  pdf,
-//                            const char* icc_file_name,
-//                                   int  numcomponent);
-//
+    pub fn HPDF_Page_SetSlideShow  ( page       : HPDF_Page,
+                                     _type      : HPDF_TransitionStyle,
+                                     disp_time  : HPDF_REAL,
+                                     trans_time : HPDF_REAL)->HPDF_STATUS;
+
+
+    pub fn HPDF_ICC_LoadIccFromMem (pdf        : HPDF_Doc   ,
+                                    mmgr        : HPDF_MMgr   ,
+                                    iccdata     : HPDF_Stream ,
+                                    xref        : HPDF_Xref   ,
+                                    numcomponent: i32)->HPDF_OutputIntent;
+
+    pub fn HPDF_LoadIccProfileFromFile  ( pdf: HPDF_Doc ,
+                                          icc_file_nameconst : *mut libc::c_char,
+                                          numcomponent: i32)->HPDF_OutputIntent;
+
 
 
 

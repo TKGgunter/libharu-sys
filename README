@@ -29,7 +29,11 @@ to the following restrictions:
 Note on Compilation:
 +This binding of the libharu library compiles without cmake 
 or any other build tools outside of the rustc and cargo.
-And as of version 0.0.1 does not construct configuration header file, hpdf_config.h, during builds. The current configuration file excludes pnglib and zlib as dependances.  If you wish embed pngs I would recommend the Image library and pass raw bytes of your png image plane to libharu.  In addition I have not tested the routines that require pnglib or zlib.
+This version does not construct configuration header file, hpdf_config.h, during builds. 
+The current configuration file excludes pnglib and zlib as dependencies.  
+If you wish embed pngs I would recommend the Image library and pass raw bytes of your png image plane to libharu.  
+The zlib dependency has been replace by miniz the single file DEFLATE library https://github.com/richgel999/miniz.  
+Miniz implements RFC 1950 and  RFC 19501 compressed data specifications.
 
 
 

@@ -31,6 +31,10 @@
 #include "hpdf_streams.h"
 
 #ifndef LIBHPDF_HAVE_NOZLIB
+//NOTE: Thoth Gunter Aug 17, 2018
+//miniz is zlib replacement used to remove external zlib dependency.
+//this was no implemented by the original authors of libharu.
+//The change was made to simplify compliation when binding to rust.
 #include <miniz.h>
 //#include <zlib.h>
 //#include <zconf.h>
