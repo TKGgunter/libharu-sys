@@ -300,6 +300,15 @@ HPDF_LoadTTFontFromFile2 (HPDF_Doc     pdf,
                           HPDF_BOOL    embedding);
 
 
+//NOTE Added by Thoth Gunter
+//Taken from https://github.com/libharu/libharu/pull/44/commits/e011b10c660d9f6f4e6a48c45c5434861ae7726d
+HPDF_EXPORT(const char *)
+HPDF_LoadTTFontFromMemory (HPDF_Doc         pdf,
+                           const HPDF_BYTE *buffer,
+                           HPDF_UINT        size,
+                           HPDF_BOOL        embedding);
+
+
 HPDF_EXPORT(HPDF_STATUS)
 HPDF_AddPageLabel  (HPDF_Doc            pdf,
                     HPDF_UINT           page_num,

@@ -1481,17 +1481,16 @@ extern{
                                   len  : HPDF_UINT           )->HPDF_TextWidth;
 
 
-//HPDF_EXPORT(HPDF_UINT)
-//HPDF_Font_MeasureText (HPDF_Font          font,
-//                       const HPDF_BYTE   *text,
-//                       HPDF_UINT          len,
-//                       HPDF_REAL          width,
-//                       HPDF_REAL          font_size,
-//                       HPDF_REAL          char_space,
-//                       HPDF_REAL          word_space,
-//                       HPDF_BOOL          wordwrap,
-//                       HPDF_REAL         *real_width);
-//
+    pub fn HPDF_Font_MeasureText ( font      : HPDF_Font,
+                                text      : *const HPDF_BYTE,
+                                len       : HPDF_UINT,
+                                width     : HPDF_REAL,
+                                font_size : HPDF_REAL,
+                                char_space: HPDF_REAL,
+                                word_space: HPDF_REAL,
+                                word_wrap : HPDF_BOOL,
+                                real_width: &mut HPDF_REAL)->HPDF_UINT;
+
 
 /*--------------------------------------------------------------------------*/
 /*----- attachements -------------------------------------------------------*/
@@ -1636,35 +1635,29 @@ extern{
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
 
-//HPDF_EXPORT(HPDF_MMgr)
-//HPDF_GetPageMMgr    (HPDF_Page  page);
-//
-//HPDF_EXPORT(HPDF_PageLayout)
-//HPDF_GetPageLayout  (HPDF_Doc   pdf);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_SetPageLayout  (HPDF_Doc          pdf,
-//                     HPDF_PageLayout   layout);
-//
-//
-//HPDF_EXPORT(HPDF_PageMode)
-//HPDF_GetPageMode  (HPDF_Doc   pdf);
-//
-//
+    pub fn HPDF_GetPageMMgr    (page : HPDF_Page)->HPDF_MMgr;
+
+    pub fn HPDF_GetPageLayout  (pdf : HPDF_Doc )->HPDF_PageLayout;
+
+
+    pub fn HPDF_SetPageLayout  (pdf     : HPDF_Doc,
+                                layout  : HPDF_PageLayout)->HPDF_STATUS;
+
+
+    pub fn HPDF_GetPageMode  (pdf  : HPDF_Doc)->HPDF_PageMode;
+
+
     pub fn HPDF_SetPageMode  (pdf  : HPDF_Doc,
                               mode : HPDF_PageMode )->HPDF_STATUS;
 
 
-//HPDF_EXPORT(HPDF_UINT)
-//HPDF_GetViewerPreference  (HPDF_Doc   pdf);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_SetViewerPreference  (HPDF_Doc     pdf,
-//                           HPDF_UINT    value);
-//
-//
+    pub fn HPDF_GetViewerPreference  (pdf : HPDF_Doc)->HPDF_UINT;
+
+
+    pub fn HPDF_SetViewerPreference  (pdf       : HPDF_Doc,
+                                      value     : HPDF_UINT)->HPDF_STATUS;
+
+
     pub fn HPDF_SetOpenAction  (pdf: HPDF_Doc ,
                                  open_action: HPDF_Destination)->HPDF_STATUS;
 
@@ -1713,17 +1706,15 @@ extern{
                            encoding_name: *const libc::c_char)->HPDF_Font;
     
 
-//HPDF_EXPORT(const char*)
-//HPDF_LoadType1FontFromFile  (HPDF_Doc     pdf,
-//                             const char  *afm_file_name,
-//                             const char  *data_file_name);
-//
-//
-//HPDF_EXPORT(HPDF_FontDef)
-//HPDF_GetTTFontDefFromFile (HPDF_Doc     pdf,
-//                           const char  *file_name,
-//                           HPDF_BOOL    embedding);
-//
+    pub fn HPDF_LoadType1FontFromFile  (pdf           : HPDF_Doc,
+                                        afm_file_name : *const libc::c_char,
+                                        data_file_name: *const libc::c_char)->*const libc::c_char;
+
+
+    pub fn HPDF_GetTTFontDefFromFile (pdf       : HPDF_Doc,
+                                      file_name : *const libc::c_char,
+                                      embedding :  HPDF_BOOL)->HPDF_FontDef;
+
     pub fn HPDF_LoadTTFontFromFile (pdf: HPDF_Doc,
                                      file_name: *const libc::c_char,
                                      embedding: HPDF_BOOL)-> *const libc::c_char;
@@ -1734,15 +1725,19 @@ extern{
                                       index      : HPDF_UINT,    
                                       embedding  : HPDF_BOOL    )->*const libc::c_char;
 
+	pub fn HPDF_LoadTTFontFromMemory ( pdf		: HPDF_Doc,
+									   buffer	: *const HPDF_BYTE,
+									   size		: HPDF_UINT,
+									   embedding: HPDF_BOOL)->*const libc::c_char;
 
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_AddPageLabel  (HPDF_Doc            pdf,
-//                    HPDF_UINT           page_num,
-//                    HPDF_PageNumStyle   style,
-//                    HPDF_UINT           first_page,
-//                    const char         *prefix);
-//
-//
+
+    pub fn HPDF_AddPageLabel  (pdf         :  HPDF_Doc,
+                               page_num    :  HPDF_UINT,
+                               style       :  HPDF_PageNumStyle,
+                               first_page  :  HPDF_UINT,
+                               prefix      : *const libc::c_char)->HPDF_STATUS;
+
+
     pub fn HPDF_UseJPFonts   (pdf : HPDF_Doc)->HPDF_STATUS;
 
 
@@ -1784,40 +1779,33 @@ extern{
                                       zoom : HPDF_REAL)->HPDF_STATUS;
 
 
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Destination_SetFit  (HPDF_Destination  dst);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Destination_SetFitH  (HPDF_Destination  dst,
-//                           HPDF_REAL         top);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Destination_SetFitV  (HPDF_Destination  dst,
-//                           HPDF_REAL         left);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Destination_SetFitR  (HPDF_Destination  dst,
-//                           HPDF_REAL         left,
-//                           HPDF_REAL         bottom,
-//                           HPDF_REAL         right,
-//                           HPDF_REAL         top);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Destination_SetFitB  (HPDF_Destination  dst);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Destination_SetFitBH  (HPDF_Destination  dst,
-//                            HPDF_REAL         top);
-//
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Destination_SetFitBV  (HPDF_Destination  dst,
-//                            HPDF_REAL         left);
+    pub fn HPDF_Destination_SetFit  (dst : HPDF_Destination)->HPDF_STATUS;
+
+
+    pub fn HPDF_Destination_SetFitH  (dst       : HPDF_Destination,
+                                      top       : HPDF_REAL)->HPDF_STATUS;
+
+
+    pub fn HPDF_Destination_SetFitV  (dst    : HPDF_Destination,
+                                      left   : HPDF_REAL)->HPDF_STATUS;
+
+
+    pub fn HPDF_Destination_SetFitR  (dst    : HPDF_Destination,
+                                      left   : HPDF_REAL,
+                                      bottom : HPDF_REAL,
+                                      right  : HPDF_REAL,
+                                      top    : HPDF_REAL)->HPDF_STATUS;
+
+
+    pub fn HPDF_Destination_SetFitB  (dst  : HPDF_Destination)->HPDF_STATUS;
+
+
+    pub fn HPDF_Destination_SetFitBH  (dst   : HPDF_Destination,
+                                       top   : HPDF_REAL)->HPDF_STATUS;
+
+
+    pub fn HPDF_Destination_SetFitBV  (dst :   HPDF_Destination,
+                                       left:   HPDF_REAL)->HPDF_STATUS;
 
 /*--------------------------------------------------------------------------*/
 /*----- encoder ------------------------------------------------------------*/
@@ -1836,12 +1824,11 @@ extern{
     pub fn HPDF_Encoder_GetType  (encoder : HPDF_Encoder  )->HPDF_EncoderType;
 
 
-//HPDF_EXPORT(HPDF_ByteType)
-//HPDF_Encoder_GetByteType  (HPDF_Encoder    encoder,
-//                           const char     *text,
-//                           HPDF_UINT       index);
-//
-//
+    pub fn HPDF_Encoder_GetByteType  (encoder   : HPDF_Encoder,
+                                      text      : *const libc::c_char,
+                                      index     : HPDF_UINT)->HPDF_ByteType;
+
+
     pub fn HPDF_Encoder_GetUnicode  (encoder : HPDF_Encoder ,
                                      code : HPDF_UINT16 )->HPDF_UNICODE;
 
@@ -1871,39 +1858,34 @@ extern{
 /*--------------------------------------------------------------------------*/
 /*----- annotation ---------------------------------------------------------*/
 
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_Create3DAnnot    (HPDF_Page       page,
-//							HPDF_Rect       rect,
-//                            HPDF_BOOL       tb,
-//                            HPDF_BOOL       np,
-//                            HPDF_U3D        u3d,
-//                            HPDF_Image      ap);
-//
+	pub fn HPDF_Page_Create3DAnnot    (page : HPDF_Page ,
+										rect : HPDF_Rect ,
+										tb   : HPDF_BOOL ,
+										np   : HPDF_BOOL ,
+										u3d  : HPDF_U3D  ,
+										ap   : HPDF_Image  )->HPDF_Annotation;
+
     pub fn  HPDF_Page_CreateTextAnnot  (page      :   HPDF_Page,       
                                         rect      :   HPDF_Rect,       
                                         text      :  *const libc::c_char,
                                         encoder   :   HPDF_Encoder    )->HPDF_Annotation;
 
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateFreeTextAnnot  (HPDF_Page       page,
-//								HPDF_Rect       rect,
-//								const char     *text,
-//								HPDF_Encoder    encoder);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateLineAnnot  (HPDF_Page       page,
-//							const char     *text,
-//							HPDF_Encoder    encoder);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateWidgetAnnot_WhiteOnlyWhilePrint (HPDF_Doc   pdf,
-//                                                 HPDF_Page  page,
-//                                                 HPDF_Rect  rect);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateWidgetAnnot (HPDF_Page  page,
-//                             HPDF_Rect  rect);
-//
+	pub fn HPDF_Page_CreateFreeTextAnnot  ( page   : HPDF_Page,     
+										   rect   : HPDF_Rect,      
+										   text   : *const libc::c_char,
+										   encoder : HPDF_Encoder   )->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateLineAnnot  ( page : HPDF_Page,
+										text : *const libc::c_char,
+										encoder : HPDF_Encoder)->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateWidgetAnnot_WhiteOnlyWhilePrint (pdf  : HPDF_Doc  ,
+															page : HPDF_Page ,
+															rect : HPDF_Rect )->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateWidgetAnnot (page : HPDF_Page  ,
+										rect : HPDF_Rect  )->HPDF_Annotation;
+
     pub fn HPDF_Page_CreateLinkAnnot  (page : HPDF_Page          ,
                                         rect : HPDF_Rect          ,
                                         dst  : HPDF_Destination    )->HPDF_Annotation ;
@@ -1914,74 +1896,63 @@ extern{
                                            uri : *const libc::c_char)->HPDF_Annotation;
 
 
-//HPDF_Annotation
-//HPDF_Page_CreateTextMarkupAnnot (HPDF_Page     page,
-//								HPDF_Rect      rect,
-//								const char     *text,
-//								HPDF_Encoder   encoder,
-//								HPDF_AnnotType subType);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateHighlightAnnot  (HPDF_Page   page,
-//								HPDF_Rect    rect,
-//								const char   *text,
-//								HPDF_Encoder encoder);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateUnderlineAnnot (HPDF_Page    page,
-//								HPDF_Rect    rect,
-//								const char   *text,
-//								HPDF_Encoder encoder);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateSquigglyAnnot  (HPDF_Page    page,
-//								HPDF_Rect    rect,
-//								const char   *text,
-//								HPDF_Encoder encoder);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateStrikeOutAnnot  (HPDF_Page   page,
-//								HPDF_Rect    rect,
-//								const char   *text,
-//								HPDF_Encoder encoder);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreatePopupAnnot  (	HPDF_Page          page,
-//								HPDF_Rect          rect,
-//								HPDF_Annotation	   parent);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateStampAnnot  (	HPDF_Page           page,
-//								HPDF_Rect           rect,
-//								HPDF_StampAnnotName name,
-//								const char*			text,
-//								HPDF_Encoder		encoder);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateProjectionAnnot(HPDF_Page page,
-//								HPDF_Rect rect,
-//								const char* text,
-//								HPDF_Encoder encoder);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateSquareAnnot (HPDF_Page          page,
-//							 HPDF_Rect          rect,
-//							 const char			*text,
-//							 HPDF_Encoder       encoder);
-//
-//HPDF_EXPORT(HPDF_Annotation)
-//HPDF_Page_CreateCircleAnnot (HPDF_Page          page,
-//							 HPDF_Rect          rect,
-//							 const char			*text,
-//							 HPDF_Encoder       encoder);
-//
+	pub fn HPDF_Page_CreateTextMarkupAnnot (page    : HPDF_Page,
+								   rect    : HPDF_Rect,      
+								   text    : *const libc::c_char,     
+								   encoder : HPDF_Encoder,
+								   subType : HPDF_AnnotType )->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateHighlightAnnot  (page : HPDF_Page,
+											rect : HPDF_Rect,
+											tect : *const libc::c_char,
+											encoder: HPDF_Encoder)->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateUnderlineAnnot (page    : HPDF_Page,
+										   rect    : HPDF_Rect,   
+										   text    : *const libc::c_char,   
+										   encoder : HPDF_Encoder )->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateSquigglyAnnot  (page : HPDF_Page,
+											  rect : HPDF_Rect,
+											  text : *const libc::c_char,
+											  encoder : HPDF_Encoder)->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateStrikeOutAnnot  (page   : HPDF_Page,   
+										   rect   : HPDF_Rect, 
+										   text   : *const libc::c_char,
+										   encoder : HPDF_Encoder )->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreatePopupAnnot  (	page : HPDF_Page,
+											rect : HPDF_Rect,
+											parent : HPDF_Annotation)->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateStampAnnot  (	page  	:	HPDF_Page ,
+											rect  	:	HPDF_Rect ,
+											name  	:	HPDF_StampAnnotName ,
+											text  	:	*const libc::c_char,
+											encoder	:	HPDF_Encoder)->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateProjectionAnnot(page : HPDF_Page,
+											rect : HPDF_Rect,
+											text : *const libc::c_char,
+											encoder : HPDF_Encoder)->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateSquareAnnot (page    : HPDF_Page,       
+							   rect    : HPDF_Rect, 
+							   text    : *const libc::c_char,
+							   encoder : HPDF_Encoder)->HPDF_Annotation;
+
+	pub fn HPDF_Page_CreateCircleAnnot (  page	:	HPDF_Page,
+										 rect	:   HPDF_Rect,          
+										 text	:  *const libc::c_char,
+										 encoder:   HPDF_Encoder )->HPDF_Annotation;
+
     pub fn HPDF_LinkAnnot_SetHighlightMode  (annot: HPDF_Annotation, 
                                               mode : HPDF_AnnotHighlightMode   )->HPDF_STATUS;
 
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_LinkAnnot_SetJavaScript(HPDF_Annotation    annot,
-//                             HPDF_JavaScript    javascript);
-//
+	pub fn HPDF_LinkAnnot_SetJavaScript(annot    	:	HPDF_Annotation,    
+									 javascript	:	HPDF_JavaScript    )->HPDF_STATUS;
+
     pub fn HPDF_LinkAnnot_SetBorderStyle  (annot   : HPDF_Annotation,
                                             width   : HPDF_REAL,  
                                             dash_on : HPDF_UINT16,      
@@ -2011,76 +1982,62 @@ extern{
 
     pub fn HPDF_MarkupAnnot_SetTransparency (annot : HPDF_Annotation, value : HPDF_REAL)->HPDF_STATUS;
 
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetIntent (HPDF_Annotation  annot, HPDF_AnnotIntent  intent);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetPopup (HPDF_Annotation annot, HPDF_Annotation popup);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetRectDiff (HPDF_Annotation  annot, HPDF_Rect  rect); /* RD entry */
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetCloudEffect (HPDF_Annotation  annot, HPDF_INT cloudIntensity); /* BE entry */
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetInteriorRGBColor (HPDF_Annotation  annot, HPDF_RGBColor color); /* IC with RGB entry */
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetInteriorCMYKColor (HPDF_Annotation  annot, HPDF_CMYKColor color); /* IC with CMYK entry */
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetInteriorGrayColor (HPDF_Annotation  annot, HPDF_REAL color); /* IC with Gray entry */
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_MarkupAnnot_SetInteriorTransparent (HPDF_Annotation  annot); /* IC with No Color entry */
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_TextMarkupAnnot_SetQuadPoints ( HPDF_Annotation annot, HPDF_Point lb, HPDF_Point rb, HPDF_Point rt, HPDF_Point lt); /* l-left, r-right, b-bottom, t-top positions */
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Annot_Set3DView  ( HPDF_MMgr mmgr,
-//					 	HPDF_Annotation	annot,
-//					 	HPDF_Annotation	annot3d,
-//					 	HPDF_Dict			view);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_PopupAnnot_SetOpened  (HPDF_Annotation   annot,
-//                            HPDF_BOOL         opened);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_FreeTextAnnot_SetLineEndingStyle (HPDF_Annotation annot, HPDF_LineAnnotEndingStyle startStyle, HPDF_LineAnnotEndingStyle endStyle);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_FreeTextAnnot_Set3PointCalloutLine (HPDF_Annotation annot, HPDF_Point startPoint, HPDF_Point kneePoint, HPDF_Point endPoint); /* Callout line will be in default user space */
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_FreeTextAnnot_Set2PointCalloutLine (HPDF_Annotation annot, HPDF_Point startPoint, HPDF_Point endPoint); /* Callout line will be in default user space */
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_FreeTextAnnot_SetDefaultStyle (HPDF_Annotation  annot, const char* style);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_LineAnnot_SetPosition (HPDF_Annotation annot,
-//							HPDF_Point startPoint, HPDF_LineAnnotEndingStyle startStyle,
-//							HPDF_Point endPoint, HPDF_LineAnnotEndingStyle endStyle);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_LineAnnot_SetLeader (HPDF_Annotation annot, HPDF_INT leaderLen, HPDF_INT leaderExtLen, HPDF_INT leaderOffsetLen);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_LineAnnot_SetCaption (HPDF_Annotation annot, HPDF_BOOL showCaption, HPDF_LineAnnotCapPosition position, HPDF_INT horzOffset, HPDF_INT vertOffset);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_Annotation_SetBorderStyle  (HPDF_Annotation  annot,
-//                                 HPDF_BSSubtype   subtype,
-//                                 HPDF_REAL        width,
-//                                 HPDF_UINT16      dash_on,
-//                                 HPDF_UINT16      dash_off,
-//                                 HPDF_UINT16      dash_phase);
-//
-//HPDF_EXPORT(HPDF_STATUS)
-//HPDF_ProjectionAnnot_SetExData(HPDF_Annotation annot, HPDF_ExData exdata);
+	pub fn HPDF_MarkupAnnot_SetIntent (annot	:	HPDF_Annotation, intent	:	HPDF_AnnotIntent )->HPDF_STATUS;
+
+	pub fn HPDF_MarkupAnnot_SetPopup (annot	:	HPDF_Annotation, popup	:	HPDF_Annotation)->HPDF_STATUS;
+
+	pub fn HPDF_MarkupAnnot_SetRectDiff (annot	:	HPDF_Annotation, rect 	:	HPDF_Rect)->HPDF_STATUS; /* RD entry */
+
+	pub fn HPDF_MarkupAnnot_SetCloudEffect (annot	:	HPDF_Annotation, cloudIntensity	:	HPDF_INT)->HPDF_STATUS; /* BE entry */
+
+	pub fn HPDF_MarkupAnnot_SetInteriorRGBColor (annot	:	HPDF_Annotation, color	:	HPDF_RGBColor)->HPDF_STATUS; /* IC with RGB entry */
+
+	pub fn HPDF_MarkupAnnot_SetInteriorCMYKColor (annot	:	HPDF_Annotation, color	:	HPDF_CMYKColor)->HPDF_STATUS; /* IC with CMYK entry */
+
+	pub fn HPDF_MarkupAnnot_SetInteriorGrayColor (annot	:	HPDF_Annotation, color	:	HPDF_REAL)->HPDF_STATUS; /* IC with Gray entry */
+
+	pub fn HPDF_MarkupAnnot_SetInteriorTransparent (annot	:	HPDF_Annotation)->HPDF_STATUS; /* IC with No Color entry */
+
+	pub fn HPDF_TextMarkupAnnot_SetQuadPoints ( annot	:	HPDF_Annotation, 
+												lb		:	HPDF_Point, 
+												rb		: 	HPDF_Point, 
+												rt		:	HPDF_Point, 
+												lt		:	HPDF_Point)->HPDF_STATUS; /* l-left, r-right, b-bottom, t-top positions */
+
+	pub fn HPDF_Annot_Set3DView  ( mmgr   	:	HPDF_MMgr,    
+								  annot  	:	HPDF_Annotation,	
+								  annot3d	:	HPDF_Annotation,	
+								  view    	:	HPDF_Dict		 )->HPDF_STATUS;
+
+	pub fn HPDF_PopupAnnot_SetOpened  (annot	:	HPDF_Annotation,
+									   opened	: 	HPDF_BOOL )->HPDF_STATUS;
+
+	pub fn HPDF_FreeTextAnnot_SetLineEndingStyle (annot : HPDF_Annotation, startStyle : HPDF_LineAnnotEndingStyle, endStyle : HPDF_LineAnnotEndingStyle)->HPDF_STATUS;
+
+	pub fn HPDF_FreeTextAnnot_Set3PointCalloutLine (annot : HPDF_Annotation, startPoint : HPDF_Point, kneePoint : HPDF_Point, endPoint : HPDF_Point)->HPDF_STATUS; /* Callout line will be in default user space */
+
+	pub fn HPDF_FreeTextAnnot_Set2PointCalloutLine (annot : HPDF_Annotation, startPoint : HPDF_Point, endPoint : HPDF_Point)->HPDF_STATUS; /* Callout line will be in default user space */
+
+	pub fn HPDF_FreeTextAnnot_SetDefaultStyle (annot : HPDF_Annotation, style : *const libc::c_char)->HPDF_STATUS;
+
+	pub fn HPDF_LineAnnot_SetPosition (annot    : HPDF_Annotation ,
+									startPoint : HPDF_Point , 
+									startStyle : HPDF_LineAnnotEndingStyle ,
+									endPoint   : HPDF_Point , 
+									endStyle   : HPDF_LineAnnotEndingStyle )->HPDF_STATUS;
+
+	pub fn HPDF_LineAnnot_SetLeader (annot : HPDF_Annotation, leaderLen : HPDF_INT, leaderExtLen : HPDF_INT, leaderOffsetLen : HPDF_INT)->HPDF_STATUS;
+
+	pub fn HPDF_LineAnnot_SetCaption (annot : HPDF_Annotation, showCaption : HPDF_BOOL, position : HPDF_LineAnnotCapPosition, horzOffset : HPDF_INT, vertOffset : HPDF_INT)->HPDF_STATUS;
+
+	pub fn HPDF_Annotation_SetBorderStyle  (annot    	:	HPDF_Annotation,  
+										 subtype  	:	HPDF_BSSubtype,  
+										 width    	:	HPDF_REAL,       
+										 dash_on  	:	HPDF_UINT16,     
+										 dash_off 	:	HPDF_UINT16,     
+										 dash_phase	:	HPDF_UINT16     )->HPDF_STATUS;
+
+	pub fn HPDF_ProjectionAnnot_SetExData(annot	:	HPDF_Annotation, exdata	:	HPDF_ExData)->HPDF_STATUS;
 
 /*--------------------------------------------------------------------------*/
 /*----- image data ---------------------------------------------------------*/
@@ -2234,12 +2191,6 @@ extern{
     pub fn HPDF_LoadIccProfileFromFile  ( pdf: HPDF_Doc ,
                                           icc_file_nameconst : *mut libc::c_char,
                                           numcomponent: i32)->HPDF_OutputIntent;
-
-
-
-
-
-
 
 
 

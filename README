@@ -35,6 +35,7 @@ If you wish embed pngs I would recommend the Image library and pass raw bytes of
 The zlib dependency has been replace by miniz the single file DEFLATE library https://github.com/richgel999/miniz.  
 Miniz implements RFC 1950 and  RFC 19501 compressed data specifications.
 
-
+TODO:
+Test TTF load from Mem
 
 

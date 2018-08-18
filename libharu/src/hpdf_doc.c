@@ -1485,6 +1485,41 @@ HPDF_GetTTFontDefFromFile (HPDF_Doc      pdf,
 	return def;
 }
 
+
+//NOTE Added by Thoth Gunter
+//Taken from https://github.com/libharu/libharu/pull/44/commits/e011b10c660d9f6f4e6a48c45c5434861ae7726d
+HPDF_EXPORT(const char *)
+HPDF_LoadTTFontFromMemory (HPDF_Doc       pdf,
+                   const HPDF_BYTE       *buffer,
+                         HPDF_UINT        size,
+                         HPDF_BOOL        embedding)
+{
+    HPDF_Stream font_data;
+    const char *ret;
+     HPDF_PTRACE ((" HPDF_LoadTTFontFromMemory\n"));
+     if (!HPDF_HasDoc (pdf))
+        return NULL;
+     /* create memory stream */
+    font_data = HPDF_MemStream_New (pdf->mmgr, size);
+    if (!HPDF_Stream_Validate (font_data)) {
+        HPDF_RaiseError (&pdf->error, HPDF_INVALID_STREAM, 0);
+        return NULL;
+    }
+     if (HPDF_Stream_Write (font_data, buffer, size) != HPDF_OK) {
+        HPDF_Stream_Free (font_data);
+        return NULL;
+    }
+    ret = LoadTTFontFromStream (pdf, font_data, embedding, "");
+
+    if (!ret) {
+        HPDF_CheckError(&pdf->error);
+    }
+
+    return ret;
+}
+
+
+
 HPDF_EXPORT(const char*)
 HPDF_LoadTTFontFromFile (HPDF_Doc         pdf,
                          const char      *file_name,
