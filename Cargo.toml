@@ -5,8 +5,9 @@ authors = ["TKGgunter <thothgunter@live.com>"]
 build = "libharu/build.rs"
 links = "haru"
 description = "Rust bindings for c library libharu a low level pdf generation lib."
-repository = ""
+repository = "https://github.com/TKGgunter/libharu-sys"
 keywords = ["pdf", "libharu", "haru"]
+license-file = "LICENSE"
 
 [dev-dependencies]
 image = "*"
