@@ -49,7 +49,7 @@
 #define HPDF_NOPNGLIB
 
 /* zlib is not available */
-#define LIBHPDF_HAVE_NOZLIB 
+//#define LIBHPDF_HAVE_NOZLIB 
 
 /* Define to the address where bug reports for this package should be sent. */
 #define LIBHPDF_PACKAGE_BUGREPORT "TODO"

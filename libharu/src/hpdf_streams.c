@@ -31,8 +31,9 @@
 #include "hpdf_streams.h"
 
 #ifndef LIBHPDF_HAVE_NOZLIB
-#include <zlib.h>
-#include <zconf.h>
+#include <miniz.h>
+//#include <zlib.h>
+//#include <zconf.h>
 #endif /* LIBHPDF_HAVE_NOZLIB */
 
 HPDF_STATUS
@@ -586,8 +587,9 @@ HPDF_Stream_WriteToStreamWithDeflate  (HPDF_Stream  src,
     strm.next_out = otbuf;
     strm.avail_out = DEFLATE_BUF_SIZ;
 
-    ret = deflateInit_(&strm, Z_DEFAULT_COMPRESSION, ZLIB_VERSION,
-            sizeof(z_stream));
+    ret = deflateInit(&strm, Z_DEFAULT_COMPRESSION);
+    //ret = deflateInit_(&strm, Z_DEFAULT_COMPRESSION, ZLIB_VERSION,
+    //        sizeof(z_stream));
     if (ret != Z_OK)
         return HPDF_SetError (src->error, HPDF_ZLIB_ERROR, ret);
 

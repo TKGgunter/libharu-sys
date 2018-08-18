@@ -67,7 +67,7 @@ fn main () -> ()
         }
 
 
-        HPDF_SetCompressionMode (pdf, HPDF_COMP_ALL);
+        println!("Did compression work? {}", HPDF_SetCompressionMode (pdf, HPDF_COMP_ALL));
 
         /* create default-font */
         let font = HPDF_GetFont (pdf, CString::new("Helvetica").unwrap().as_ptr(), ptr::null_mut());

@@ -3,4 +3,5 @@
 Cargo.lock
 /libharu/libharu-libharu-d84867e
 **/*.zip
+**/*.pdf
 /examples/personal*.rs
