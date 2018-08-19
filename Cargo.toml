@@ -8,6 +8,8 @@ description = "Rust bindings for c library libharu a low level pdf generation li
 repository = "https://github.com/TKGgunter/libharu-sys"
 keywords = ["pdf", "libharu", "haru"]
 license-file = "LICENSE"
+exclude = ["examples/*"]
+
 
 [dev-dependencies]
 image = "*"
